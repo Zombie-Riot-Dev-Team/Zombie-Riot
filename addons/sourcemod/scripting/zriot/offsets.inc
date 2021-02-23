@@ -6,19 +6,19 @@
  * ====================
  */
 
-new offsBaseVelocity;
-new offsGetVelocity2;
-new offsSpeed;
-new offsCollision;
-new offsMoney;
-new offsFOV;
-new offsBuyZone;
-new offsFadeMin;
-new offsFadeMax;
+int offsBaseVelocity;
+int offsGetVelocity2;
+int offsSpeed;
+int offsCollision;
+int offsMoney;
+int offsFOV;
+int offsBuyZone;
+int offsFadeMin;
+int offsFadeMax;
 
 
 
-FindOffsets()
+void FindOffsets()
 {
     offsBaseVelocity = FindSendPropInfo("CBasePlayer", "m_vecBaseVelocity");
     if (offsBaseVelocity == -1)
@@ -75,18 +75,18 @@ FindOffsets()
     }
 }
 
-SetPlayerVelocity(client, const Float:vec[3])
+void SetPlayerVelocity(int client, const float vec[3])
 {
     SetEntDataVector(client, offsBaseVelocity, vec, true);
 }
 
-SetPlayerSpeed(client, Float:speed)
+void SetPlayerSpeed(int client, float speed)
 {
-    new Float:newspeed = speed / 300.0;
+    float newspeed = speed / 300.0;
     SetEntDataFloat(client, offsSpeed, newspeed, true);
 }
 
-NoCollide(client, bool:nocollide)
+void NoCollide(int client, bool nocollide)
 {
     if (nocollide)
     {
@@ -98,27 +98,27 @@ NoCollide(client, bool:nocollide)
     }
 }
 
-SetPlayerMoney(client, amount)
+void SetPlayerMoney(int client, int amount)
 {
     SetEntData(client, offsMoney, amount, 4, true);
 }
 
-SetPlayerFOV(client, fov)
+void SetPlayerFOV(int client, int fov)
 {
     SetEntData(client, offsFOV, fov, 1, true);
 }
 
-bool:IsClientInBuyZone(client)
+bool IsClientInBuyZone(int client)
 {
-    return bool:GetEntData(client, offsBuyZone);
+    return GetEntData(client, offsBuyZone, 1) ? true : false;
 }
 
-SetPlayerMinDist(client, Float:mindist)
+void SetPlayerMinDist(int client, float mindist)
 {
     SetEntDataFloat(client, offsFadeMin, mindist);
 }
 
-SetPlayerMaxDist(client, Float:maxdist)
+void SetPlayerMaxDist(int client, float maxdist)
 {
     SetEntDataFloat(client, offsFadeMax, maxdist);
 }
@@ -129,10 +129,10 @@ SetPlayerMaxDist(client, Float:maxdist)
  * @param client        The client index.
  * @param weapons       An array of boolean values for each weapon slot.  True means remove, false means ignore.
  */
-stock RemoveAllPlayersWeapons(client)
+stock void RemoveAllPlayersWeapons(int client)
 {
-    new weaponindex;
-    for (new weaponslot = 0; weaponslot < 5; weaponslot++)
+    int weaponindex;
+    for (int weaponslot = 0; weaponslot < 5; weaponslot++)
     {
         weaponindex = GetPlayerWeaponSlot(client, weaponslot);
         if (weaponindex != -1)
@@ -150,10 +150,10 @@ stock RemoveAllPlayersWeapons(client)
  * 
  * @param client    The client index.
  */
-stock WepLib_GrenadeStripAll(client)
+stock void WepLib_GrenadeStripAll(int client)
 {
     // While GetPlayerWeaponSlot returns a valid projectile, remove it and then test again.
-    new grenade = GetPlayerWeaponSlot(client, 3);
+    int grenade = GetPlayerWeaponSlot(client, 3);
     while (grenade != -1)
     {
         Util_RemovePlayerItem(client, grenade);
@@ -167,13 +167,13 @@ stock WepLib_GrenadeStripAll(client)
  * @param client        The client whose weapon to remove.
  * @param weaponindex   The weapon index.
  */
-stock Util_RemovePlayerItem(client, weaponindex)
+stock void Util_RemovePlayerItem(int client, int weaponindex)
 {
     RemovePlayerItem(client, weaponindex);
     RemoveEdict(weaponindex);
 }
 
-TerminateRound(Float:delay, CSRoundEndReason:reason)
+void TerminateRound(float delay, CSRoundEndReason reason)
 {
     if (tHUD == INVALID_HANDLE)
         return;
