@@ -6,11 +6,11 @@
  * ====================
  */
 
-new gTarget[MAXPLAYERS+1];
+int gTarget[MAXPLAYERS+1];
 
-new bool:bTargeted[MAXPLAYERS+1][MAXPLAYERS+1];
+bool bTargeted[MAXPLAYERS+1][MAXPLAYERS+1];
 
-TargetPlayer(attacker, client)
+void TargetPlayer(int attacker, int client)
 {
     if (!IsClientInGame(attacker) || !IsClientInGame(client))
     {
@@ -22,7 +22,7 @@ TargetPlayer(attacker, client)
     bTargeted[client][attacker] = true;
 }
 
-GetClientTarget(client)
+int GetClientTarget(int client)
 {
     if (gTarget[client] == -1 || !IsClientInGame(gTarget[client]))
     {
@@ -32,10 +32,10 @@ GetClientTarget(client)
     return gTarget[client];
 }
 
-GetClientTargeters(client, clients[], maxClients)
+int GetClientTargeters(int client, char[] clients, int maxClients)
 {
-    new count = 0;
-    for (new x = 1; x <= maxClients; x++)
+    int count = 0;
+    for (int x = 1; x <= maxClients; x++)
     {
         if (!IsClientInGame(x) || !bTargeted[client][x])
         {
@@ -48,10 +48,10 @@ GetClientTargeters(client, clients[], maxClients)
     return count;
 }
 
-FindClientNextTarget(client)
+int FindClientNextTarget(int client)
 {
-    new maxplayers = GetMaxClients();
-    for (new x = 1; x <= maxplayers; x++)
+    int maxplayers = MaxClients;
+    for (int x = 1; x <= maxplayers; x++)
     {
         if (!IsClientInGame(x))
         {
@@ -67,10 +67,10 @@ FindClientNextTarget(client)
     return -1;
 }
 
-RemoveTargeters(client)
+void RemoveTargeters(int client)
 {
-    new maxplayers = GetMaxClients();
-    for (new x = 1; x <= maxplayers; x++)
+    int maxplayers = MaxClients;
+    for (int x = 1; x <= maxplayers; x++)
     {
         bTargeted[client][x] = false;
         
