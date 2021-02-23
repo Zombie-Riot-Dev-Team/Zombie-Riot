@@ -406,7 +406,6 @@ public Action PlayerHurt(Handle event, const char[] name, bool dontBroadcast)
     }
     
     char maxplayers = MaxClients;
-    //int clients[maxplayers];
     char[] clients = new char[maxplayers];
     int numClients = GetClientTargeters(index, clients, maxplayers);
     
