@@ -196,4 +196,34 @@
 		"#format"	"{1:s}"
 		"en"		"Invalid file path: \"{1}\", check downloads.txt"
 	}
+
+	// ===========================
+	// Admin Menu
+	// ===========================
+
+	"MenuAdminZombieRiot_TITLE"
+	{
+		"en"			"Zombie Riot"
+	}
+
+	"MenuAdminZombieRiot_HUMANIFY_MENU_TITLE"
+	{
+		"en"			"Humanify"
+	}
+
+	"MenuAdminZombieRiot_ZOMBIFY_MENU_TITLE"
+	{
+		"en"			"Zombify"
+	}
+	
+	"Player no longer available"
+	{
+		"en"			"Player no longer available."
+
+	}
+
+       "Unable to target"
+	{
+		"en"			"Unable to target player."
+	}
 }
