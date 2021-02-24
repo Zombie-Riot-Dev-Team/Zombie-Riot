@@ -12,6 +12,7 @@
 #include <sdktools>
 #include <sdkhooks>
 #include <cstrike>
+#include <adminmenu>
 
 #undef REQUIRE_PLUGIN
 #include <market>
@@ -76,6 +77,12 @@ public void OnPluginStart()
     FindOffsets();
     InitTeamControl();
     InitWeaponRestrict();
+    
+    Handle topmenu;
+    if (LibraryExists("adminmenu") && ((topmenu = GetAdminTopMenu()) != INVALID_HANDLE))
+    {
+    	OnAdminMenuReady(topmenu);
+     }
     
     // ======================================================================
     
