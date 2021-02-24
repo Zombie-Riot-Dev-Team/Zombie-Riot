@@ -16,11 +16,12 @@ What this plugin does is change the objective of any map into one thing: the ann
 
 
 # Commands:
+*   sm_zradmin Open Zombie Riot Admin Menu
 *   zriot_restrict <weapon> - Restricts the inputed weapon
 *   zriot_unrestrict <weapon> - Unrestricts the inputed weapon
-*   zriot_setday <day> - Skips the game to the specified day
-*   zriot_zombie <player> - Forces a player to the Zombie force
-*   zriot_human <player> - Forces a player to the Human force
+*   sm_setday <day> - Skips the game to the specified day
+*   sm_zombie <player> - Forces a player to the Zombie force
+*   sm_human <player> - Forces a player to the Human force
 
 # Installation:
 *   Extract the contents of the zip file into cstrike
